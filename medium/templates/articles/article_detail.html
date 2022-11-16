@@ -1,0 +1,27 @@
+{#{% load disqus_tags %}#}
+{#{% disqus_dev %}#}
+{% extends "articles/base_layout.html" %}
+{% load embed_video_tags %}
+{% block content %}
+    <div class="article-content">
+        <h2>{{ object.article_title }}</h2>
+
+        <img src="{{ article.thumbnail.url }}" width="550" height="350">
+        <p>{{ first_half }}</p>
+        <img src="{{ article.image.url }}" width="450" height="275">
+        <p>{{ second_half }}</p>
+        <p> {% video object.url %}</p>
+    <h4>Tags</h4>
+        <div class="btn-group">
+    {% for tag_current in object.tags.all %}
+
+        <a href="{% url 'tag_list' tag=tag_current %}"><button type="button" class="btn byn-sm btn-outline-secondary">{{ tag_current }}</button></a>
+
+
+
+    {% endfor %}
+        </div>
+    </div>
+
+{#    <a href="{{ object.get_absolute_url }}#disqus_thread" data-disqus-identifier="{{ object.id }}">View Comments</a>#}
+{% endblock %}
